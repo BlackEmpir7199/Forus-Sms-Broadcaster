@@ -62,11 +62,33 @@ class _ReadSmsScreenState extends State<ReadSmsScreen> {
     }
   }
 
+  Future<void> _deleteMessage(int index) async {
+    setState(() {
+      _messages.removeAt(index);
+    });
+  }
+
+  Future<void> _deleteAllMessages() async {
+    setState(() {
+      _messages.clear();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Received Messages'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.delete_forever),
+            onPressed: _messages.isEmpty
+                ? null
+                : () async {
+                    await _deleteAllMessages();
+                  },
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -88,6 +110,12 @@ class _ReadSmsScreenState extends State<ReadSmsScreen> {
                             'Message: ${message['body']}\n'
                             'Timestamp: ${message['timestamp']}',
                             style: TextStyle(color: Colors.black),
+                          ),
+                          trailing: IconButton(
+                            icon: Icon(Icons.delete),
+                            onPressed: () async {
+                              await _deleteMessage(index);
+                            },
                           ),
                         ),
                       );
