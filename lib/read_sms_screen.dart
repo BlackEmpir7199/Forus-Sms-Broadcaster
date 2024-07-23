@@ -40,7 +40,8 @@ class _ReadSmsScreenState extends State<ReadSmsScreen> {
             await _broadcastMessage(message.body ?? '', receivedNumber);
           }
         },
-        listenInBackground: false,
+        onBackgroundMessage: backgroundMessageHandler,
+        listenInBackground: true,
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -49,8 +50,21 @@ class _ReadSmsScreenState extends State<ReadSmsScreen> {
     }
   }
 
-  Future<void> _broadcastMessage(String message, String sender) async {
+  static Future<void> backgroundMessageHandler(SmsMessage message) async {
+    final DatabaseHelper dbHelper = DatabaseHelper();
     final numbers = await dbHelper.getNumbers();
+    final receivedNumber = message.address;
+
+    if (receivedNumber != null && numbers.any((number) => number['phone_no'] == receivedNumber)) {
+      await _broadcastMessage(message.body ?? '', receivedNumber);
+    }
+  }
+
+  static Future<void> _broadcastMessage(String message, String sender) async {
+    final DatabaseHelper dbHelper = DatabaseHelper();
+    final numbers = await dbHelper.getNumbers();
+    final Telephony telephony = Telephony.instance;
+
     for (var number in numbers) {
       if (number['phone_no'] != sender) {
         try {
