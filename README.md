@@ -1,3 +1,5 @@
+![image](https://github.com/user-attachments/assets/b8a97d8b-6835-48fe-a09c-06bb2c04832d)
+
 # 📲 SMS Broadcaster/Transceiver
 ### Seamless Communication Without Internet
 
@@ -106,17 +108,10 @@ class DatabaseHelper { ... }
 
 Here are some of the snaps of the Application.
 
-**Home Screen**
-
----
-![WhatsApp Image 2024-07-24 at 18 51 50_69099e07](https://github.com/user-attachments/assets/a21c5546-7dc4-4db7-9d4a-296940cd3b82)
-
-**Users Screen**
-
----
-![WhatsApp Image 2024-07-24 at 18 51 50_03af4e94](https://github.com/user-attachments/assets/9e37cf09-a4a9-43ef-a67e-012cb10ee94f)
-
-
+| Screen       | Image                                                                                  |
+|--------------|----------------------------------------------------------------------------------------|
+| Home Screen  | ![Home Screen](https://github.com/user-attachments/assets/a21c5546-7dc4-4db7-9d4a-296940cd3b82)  |
+| Users Screen | ![Users Screen](https://github.com/user-attachments/assets/9e37cf09-a4a9-43ef-a67e-012cb10ee94f)  |
 
 ## 🤝 Contributing
 
